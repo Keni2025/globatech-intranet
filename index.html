@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GlobaTech 内部门户网站</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+    }
+    header {
+      background-color: #002b5c;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      height: 200px;
+      margin-right: 10px;
+    }
+    .main {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .content {
+      flex: 3;
+      margin-right: 20px;
+    }
+    .sidebar {
+      flex: 1;
+    }
+    .section {
+      background-color: white;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #003366;
+    }
+    .ticker {
+      background-color: #e53935;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+      animation: blink 1.5s linear infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0.5; }
+    }
+    .email-item {
+      background-color: #f0f0f0;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-left: 4px solid #003366;
+      cursor: pointer;
+    }
+    .email-content {
+      display: none;
+      background: #fafafa;
+      padding: 10px;
+      border-left: 3px solid #aaa;
+    }
+    .news-thumbnail {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    #popup-news {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 30%;
+      width: 40%;
+      background: white;
+      border: 2px solid #003366;
+      padding: 20px;
+      z-index: 9999;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GlobaTech 内部门户网站</h1>
+    <div>👤 登录用户：Alex Zhang</div>
+  </header>
+
+  <div class="ticker">[快讯] 供应商关闭导致 GlobaTech 股价在 48 小时内下跌 16%。</div>
+
+  <div class="main">
+    <div class="content">
+      <div class="section">
+        <div class="section-title">🌐 关于 GlobaTech 公司</div>
+        <p>GlobaTech 是全球领先的半导体创新、AI 智能设备制造与未来基础设施建设企业。</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">📢 内部通知</div>
+        <p>[运营] 供应商中断已确认。</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">📬 收件箱（3 封邮件）</div>
+        <div class="email-item" onclick="toggleEmail('e1')">【Tony Williams】我们一起应对挑战</div>
+        <div class="email-content" id="e1">
+          <p>当前公司正面临较大压力，工作节奏也随之加快。</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">🗞️ 新闻头条</div>
+        <img src="news1.png" style="width:100%; margin-bottom:20px;"/>
+        <img src="news2.png" style="width:100%; margin-bottom:20px;"/>
+        <img src="news3.png" style="width:100%; margin-bottom:20px;"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- 弹窗 -->
+  <div id="popup-news">
+    <h3 id="popup-title"></h3>
+    <p id="popup-body"></p>
+    <button onclick="closeNews()">关闭</button>
+  </div>
+
+  <script>
+    // 弹窗功能
+    function openNews(id) {
+      const titles = {
+        chip: 'Chip Crisis Deepens',
+        asia: 'Southeast Asia Shutdown',
+        startup: 'Startups Bankrupt'
+      };
+      const bodies = {
+        chip: 'Global semiconductor production paralyzed...',
+        asia: 'Over 1,200 exporters affected...',
+        startup: 'Startups face bankruptcy as funding dries up...'
+      };
+      document.getElementById('popup-title').innerText = titles[id];
+      document.getElementById('popup-body').innerText = bodies[id];
+      document.getElementById('popup-news').style.display = 'block';
+    }
+
+    function closeNews() {
+      document.getElementById('popup-news').style.display = 'none';
+    }
+
+    // 展示新闻弹窗
+    document.querySelectorAll('.news-bullet').forEach(el => {
+      el.onclick = function() {
+        openNews(this.dataset.id);
+      };
+    });
+
+    // 展示邮件内容
+    function toggleEmail(id) {
+      var x = document.getElementById(id);
+      x.style.display = x.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+  <!-- 问卷引导区块 -->
+  <div style="background-color:#e8f0fe; text-align:center; padding:20px; margin-top:40px;">
+    📋 请在阅读完页面内容后，点击下方按钮完成你的任务：
+    <br/><br/>
+    <a href="https://www.credamo.com/s/ZvYfaq/" target="_blank" style="display:inline-block; background-color:#003366; color:white; padding:12px 24px; border-radius:6px; text-decoration:none;">
+      🚀 立即响应公司任务
+    </a>
+  </div>
+</body>
+</html>
